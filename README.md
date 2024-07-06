@@ -10,4 +10,6 @@ Use:
     - Pressing 'Y' or 'Right Arrow' shows the next slide
     - Pressing 'B' or 'Down Arrow' goes back
  
-Enjoy
+Note there is an exe build available in releases 
+ 
+Enjoy!
