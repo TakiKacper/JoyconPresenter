@@ -1,5 +1,4 @@
 import hid
-import struct
 from pynput.mouse import Controller, Button
 import pyautogui
 
@@ -17,8 +16,6 @@ BUTTONS = {
     'thumbstick_x' : 0x0006,
     'thumbstick_y' : 0x0007
 }
-
-SENSITIVITY = 0.1
 
 def find_joycons():
     devices = hid.enumerate(JOYCON_VENDOR_ID, 0x0000)
@@ -39,16 +36,6 @@ def open_joycon(device_info):
 def read_buttons(joycon):
     report = joycon.read(49)
     return report
-
-def read_thumbstick(joycon):
-    report = joycon.read(49)
-    if report:
-        # Ensure report is long enough before unpacking
-        if len(report) >= 8:
-            x = struct.unpack('B', bytes([report[BUTTONS['thumbstick_x']]]))[0]
-            y = struct.unpack('B', bytes([report[BUTTONS['thumbstick_y']]]))[0]
-            return x, y
-    return None, None
 
 def main():
     left_joycon_info, right_joycon_info = find_joycons()
